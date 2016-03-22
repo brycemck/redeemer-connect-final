@@ -1,0 +1,99 @@
+@font-face {
+    font-family: Gotham Bold;
+    src: url(../fonts/Gotham-Bold.otf);
+    font-weight: 700;
+}
+@font-face {
+    font-family: Gotham Book;
+    src: url(../fonts/Gotham-Book.otf);
+    font-weight: 400;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+.card {
+    position: relative;
+    display: inline-block;
+    border: 2px solid black;
+}
+.left, .right {
+    display: inline-block;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.logo {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background-size: cover;
+    background-image: url(../../img/logo.png);
+    top: 30px;
+    left: 50%;
+    margin-left: -27.5px;
+}
+.left-title, .right-title {
+    font-family: Gotham Bold;
+    margin: 0;
+    padding: 17px 0;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.left-title {
+    border-right: 4px solid black;
+    border-bottom: 4px solid black;
+}
+.right-title {
+    border-bottom: 4px solid black;
+    border-left: 4px solid black;
+}
+.content {
+    padding: 20px 10px 0;
+    margin-top: 0px;
+    white-space: normal;
+    height: 341px;
+    border-top: 4px solid black;
+    border-right: 4px solid black;
+    text-align: center;
+    max-width: 234px;
+    min-width: 234px;
+}
+.content-title {
+    font-family: Gotham Bold;
+    margin: 20px 0 10px;
+}
+.content-title:first-child {
+    margin-top: 0;
+}
+.content span {
+    font-family: Gotham Book;
+    font-size: 15px;
+    line-height: 22px;
+    word-wrap: break-word;
+}
+.map-container {
+    border-top: 4px solid black;
+    border-left: 4px solid black;
+    max-width: 234px;
+    min-width: 234px;
+}
+
+@media print {
+    body {
+        margin: -60px -80px;
+        transform: scale(0.79);
+    }
+    .card:nth-child(2), .card:nth-child(4) {
+        margin-left: -4px;
+    }
+    .card:nth-child(3), .card:nth-child(4) {
+        margin-top: -4px;
+    }
+}
