@@ -48,9 +48,17 @@
                     <h4 class="left-title"><?php echo explode("|", $thisCG['printgroupname'])[0]; ?></h4>
                     <div class="content">
                         <h4 class="content-title">MEET TIME</h4>
-                        <span><?php echo $thisCG['day']; ?>'s at <?php echo $thisCG['time']; ?></span>
+                        <?php if (substr($thisCG['time'], 0, 1) == '-') {
+                            echo "<span>" . $thisCG['day'] ."'s at " . explode("-", $thisCG['time'])[1] . "</span>";
+                        } else { ?>
+                            <span><?php echo $thisCG['day']; ?>'s at <?php echo $thisCG['time']; ?></span>
+                        <?php } ?>
 						<h4 class="content-title">ADDRESS</h4>
-                        <span><?php echo $thisCG['hosthomestreetaddress'] . "<br>" . $thisCG['hosthomecity'] . ", " . $thisCG['hosthomestate'] . " " . $thisCG['hosthomezipcode']; ?></span>
+                        <?php if (substr($thisCG['hosthomestreetaddress'], 0, 1) == '-') {
+                            echo "<span>" . explode("-", $thisCG['hosthomestreetaddress'])[1] . "<br>" . explode("-", $thisCG['hosthomecity'])[1] . ", " . explode("-", $thisCG['hosthomestate'])[1] . " " . explode("-", $thisCG['hosthomezipcode'])[1] . "</span>";
+                        } else { ?>
+                            <span><?php echo $thisCG['hosthomestreetaddress'] . "<br>" . $thisCG['hosthomecity'] . ", " . $thisCG['hosthomestate'] . " " . $thisCG['hosthomezipcode']; ?></span>
+                        <?php } ?>
 						<h4 class="content-title">LEADER PHONE #</h4>
                         <span><?php echo $thisCG['cgleaderphonenumber']; ?></span>
 						<h4 class="content-title">LEADER EMAIL</h4>
@@ -70,9 +78,17 @@
                     <h4 class="left-title"><?php echo explode("|", $thisCG['printgroupname'])[0]; ?></h4>
                     <div class="content">
                         <h4 class="content-title">MEET TIME</h4>
-                        <span><?php echo $thisCG['day']; ?>'s at <?php echo $thisCG['time']; ?></span>
+                        <?php if (substr($thisCG['time'], 0, 1) == '-') {
+                            echo "<span>" . $thisCG['day'] ."'s at " . explode("-", $thisCG['time'])[1] . "</span>";
+                        } else { ?>
+                            <span><?php echo $thisCG['day']; ?>'s at <?php echo $thisCG['time']; ?></span>
+                        <?php } ?>
 						<h4 class="content-title">ADDRESS</h4>
-                        <span><?php echo $thisCG['hosthomestreetaddress'] . "<br>" . $thisCG['hosthomecity'] . ", " . $thisCG['hosthomestate'] . " " . $thisCG['hosthomezipcode']; ?></span>
+                        <?php if (substr($thisCG['hosthomestreetaddress'], 0, 1) == '-') {
+                            echo "<span>" . explode("-", $thisCG['hosthomestreetaddress'])[1] . "<br>" . explode("-", $thisCG['hosthomecity'])[1] . ", " . explode("-", $thisCG['hosthomestate'])[1] . " " . explode("-", $thisCG['hosthomezipcode'])[1] . "</span>";
+                        } else { ?>
+                            <span><?php echo $thisCG['hosthomestreetaddress'] . "<br>" . $thisCG['hosthomecity'] . ", " . $thisCG['hosthomestate'] . " " . $thisCG['hosthomezipcode']; ?></span>
+                        <?php } ?>
 						<h4 class="content-title">LEADER PHONE #</h4>
                         <span><?php echo $thisCG['cgleaderphonenumber']; ?></span>
 						<h4 class="content-title">LEADER EMAIL</h4>
@@ -92,9 +108,17 @@
                     <h4 class="left-title"><?php echo explode("|", $thisCG['printgroupname'])[0]; ?></h4>
                     <div class="content">
                         <h4 class="content-title">MEET TIME</h4>
-                        <span><?php echo $thisCG['day']; ?>'s at <?php echo $thisCG['time']; ?></span>
+                        <?php if (substr($thisCG['time'], 0, 1) == '-') {
+                            echo "<span>" . $thisCG['day'] ."'s at " . explode("-", $thisCG['time'])[1] . "</span>";
+                        } else { ?>
+                            <span><?php echo $thisCG['day']; ?>'s at <?php echo $thisCG['time']; ?></span>
+                        <?php } ?>
 						<h4 class="content-title">ADDRESS</h4>
-                        <span><?php echo $thisCG['hosthomestreetaddress'] . "<br>" . $thisCG['hosthomecity'] . ", " . $thisCG['hosthomestate'] . " " . $thisCG['hosthomezipcode']; ?></span>
+                        <?php if (substr($thisCG['hosthomestreetaddress'], 0, 1) == '-') {
+                            echo "<span>" . explode("-", $thisCG['hosthomestreetaddress'])[1] . "<br>" . explode("-", $thisCG['hosthomecity'])[1] . ", " . explode("-", $thisCG['hosthomestate'])[1] . " " . explode("-", $thisCG['hosthomezipcode'])[1] . "</span>";
+                        } else { ?>
+                            <span><?php echo $thisCG['hosthomestreetaddress'] . "<br>" . $thisCG['hosthomecity'] . ", " . $thisCG['hosthomestate'] . " " . $thisCG['hosthomezipcode']; ?></span>
+                        <?php } ?>
 						<h4 class="content-title">LEADER PHONE #</h4>
                         <span><?php echo $thisCG['cgleaderphonenumber']; ?></span>
 						<h4 class="content-title">LEADER EMAIL</h4>
@@ -114,9 +138,17 @@
                     <h4 class="left-title"><?php echo explode("|", $thisCG['printgroupname'])[0]; ?></h4>
                     <div class="content">
                         <h4 class="content-title">MEET TIME</h4>
-                        <span><?php echo $thisCG['day']; ?>'s at <?php echo $thisCG['time']; ?></span>
+                        <?php if (substr($thisCG['time'], 0, 1) == '-') {
+                            echo "<span>" . $thisCG['day'] ."'s at " . explode("-", $thisCG['time'])[1] . "</span>";
+                        } else { ?>
+                            <span><?php echo $thisCG['day']; ?>'s at <?php echo $thisCG['time']; ?></span>
+                        <?php } ?>
 						<h4 class="content-title">ADDRESS</h4>
-                        <span><?php echo $thisCG['hosthomestreetaddress'] . "<br>" . $thisCG['hosthomecity'] . ", " . $thisCG['hosthomestate'] . " " . $thisCG['hosthomezipcode']; ?></span>
+                        <?php if (substr($thisCG['hosthomestreetaddress'], 0, 1) == '-') {
+                            echo "<span>" . explode("-", $thisCG['hosthomestreetaddress'])[1] . "<br>" . explode("-", $thisCG['hosthomecity'])[1] . ", " . explode("-", $thisCG['hosthomestate'])[1] . " " . explode("-", $thisCG['hosthomezipcode'])[1] . "</span>";
+                        } else { ?>
+                            <span><?php echo $thisCG['hosthomestreetaddress'] . "<br>" . $thisCG['hosthomecity'] . ", " . $thisCG['hosthomestate'] . " " . $thisCG['hosthomezipcode']; ?></span>
+                        <?php } ?>
 						<h4 class="content-title">LEADER PHONE #</h4>
                         <span><?php echo $thisCG['cgleaderphonenumber']; ?></span>
 						<h4 class="content-title">LEADER EMAIL</h4>
