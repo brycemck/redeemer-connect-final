@@ -1,54 +1,51 @@
 <?php
-    // set_include_path(get_include_path() . PATH_SEPARATOR . 'assets/');
-    
+    // Include libraries
     include("src/Google/autoload.php");
     include("src/Google/Spreadsheet/Autoloader.php");
     
+    // OATH Service account data
     $client_email = 'redeemer@connect-2016.iam.gserviceaccount.com';
     $private_key = file_get_contents('assets/connect.p12');
-    // $scopes = array('https://www.googleapis.com/auth/drive', 'https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/drive.readonly');
     $scopes = array('https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.apps.readonly', 'https://www.googleapis.com/auth/drive.file', 'https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds');
-    // $scopes = array('https://www.googleapis.com/auth/sqlservice.admin');
     
-    $user_to_impersonate = 'connect@redeemerpdx.com';
+    // Authenticate via OAUTH 2.0
     $credentials = new Google_Auth_AssertionCredentials(
         $client_email,
         $scopes,
         $private_key
     );
-    
+    // Init Client
     $client = new Google_Client();
+    // Authenticate
     $client->setAssertionCredentials($credentials);
     if ($client->getAuth()->isAccessTokenExpired()) {
         $client->getAuth()->refreshTokenWithAssertion();
     }
+    // Get access token
     $accessToken = $client->getAccessToken();
-    
     $accessTokenObj = json_decode($accessToken, true);
     
+    // Make request
     $request = new Google\Spreadsheet\Request($accessTokenObj["access_token"]);
     $serviceRequest = new Google\Spreadsheet\DefaultServiceRequest($request);
     Google\Spreadsheet\ServiceRequestFactory::setInstance($serviceRequest);
     
+    // Get sheets
     $spreadsheetService = new Google\Spreadsheet\SpreadsheetService();
     $spreadsheetFeed = $spreadsheetService->getSpreadsheets();
-    // echo "<pre>";print_r($spreadsheetFeed);
+
+    // Get specific file
     $spreadsheet = $spreadsheetFeed->getByTitle('Redeemer Church CG Dashboard');
+    // Get specific sheet in file
     $worksheetFeed = $spreadsheet->getWorksheets();
     $worksheet = $worksheetFeed->getByTitle('COMMUNITY GROUPS');
+    // Array of data
     $listFeed = $worksheet->getListFeed();
-    
-    // echo "<pre>";
-    // foreach ($listFeed->getEntries() as $entry) {
-    //     $values = $entry->getValues();
-    //     print_r($values);
-    // }
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title>Redeemer Connect</title>
-        <!--<link rel="stylesheet" href="assets/css/style.css" />-->
         <style>
             body {
                 text-align: center;
@@ -80,7 +77,7 @@
         <div class="logo"></div>
         <ul class="list">
         <?php
-            // LOOPING THROUGH THE ROWS YESSSSSSSSS
+            // LOOPING THROUGH THE ROWS
             $int = 0;
             foreach ($listFeed->getEntries() as $entry) {
                 $values = $entry->getValues();

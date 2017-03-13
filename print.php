@@ -1,38 +1,48 @@
 <?php    
+    // Include libraries
     include("src/Google/autoload.php");
     include("src/Google/Spreadsheet/Autoloader.php");
     
+    // OATH Service account data
     $client_email = 'redeemer@connect-2016.iam.gserviceaccount.com';
     $private_key = file_get_contents('assets/connect.p12');
     $scopes = array('https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/drive.readonly', 'https://www.googleapis.com/auth/drive.appfolder', 'https://www.googleapis.com/auth/drive.apps.readonly', 'https://www.googleapis.com/auth/drive.file', 'https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds');
     
-    $user_to_impersonate = 'connect@redeemerpdx.com';
+    // Authenticate via OAUTH 2.0
     $credentials = new Google_Auth_AssertionCredentials(
         $client_email,
         $scopes,
         $private_key
     );
-    
+    // Init Client
     $client = new Google_Client();
+    // Authenticate
     $client->setAssertionCredentials($credentials);
     if ($client->getAuth()->isAccessTokenExpired()) {
         $client->getAuth()->refreshTokenWithAssertion();
     }
+    // Get access token
     $accessToken = $client->getAccessToken();
-    
     $accessTokenObj = json_decode($accessToken, true);
     
+    // Make request
     $request = new Google\Spreadsheet\Request($accessTokenObj["access_token"]);
     $serviceRequest = new Google\Spreadsheet\DefaultServiceRequest($request);
     Google\Spreadsheet\ServiceRequestFactory::setInstance($serviceRequest);
     
+    // Get sheets
     $spreadsheetService = new Google\Spreadsheet\SpreadsheetService();
     $spreadsheetFeed = $spreadsheetService->getSpreadsheets();
+
+    // Get specific file
     $spreadsheet = $spreadsheetFeed->getByTitle('Redeemer Church CG Dashboard');
+    // Get specific sheet in file
     $worksheetFeed = $spreadsheet->getWorksheets();
     $worksheet = $worksheetFeed->getByTitle('COMMUNITY GROUPS');
+    // Array of data
     $listFeed = $worksheet->getListFeed();
     
+    // Get current row based on ID in URL
     $thisCG = $listFeed->getEntries()[$_GET['id']]->getValues();
 ?>
 <!DOCTYPE html>
